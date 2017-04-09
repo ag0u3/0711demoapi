@@ -5,9 +5,10 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Threading.Tasks;
-using System.Web.Http;
+//using System.Web.Http;
 using Microsoft.AspNet.SignalR.Client;
 using Newtonsoft.Json;
+using System.Configuration;
 
 namespace y0Demo0711Api.Controllers
 {
@@ -18,7 +19,7 @@ namespace y0Demo0711Api.Controllers
         {
             try
             {
-                var connection = new HubConnection("http://y0demotestweb.azurewebsites.net");
+                var connection = new HubConnection(ConfigurationManager.AppSettings["HubConnection"]);
                 var hub = connection.CreateHubProxy("Echo");
 
                 connection.Start().Wait();
@@ -37,7 +38,7 @@ namespace y0Demo0711Api.Controllers
         {
             try
             {
-                var connection = new HubConnection("http://y0demotestweb.azurewebsites.net");
+                var connection = new HubConnection(ConfigurationManager.AppSettings["HubConnection"]);
                 var hub = connection.CreateHubProxy("Echo");
 
                 connection.Start().Wait();
